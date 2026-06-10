@@ -1,0 +1,16 @@
+{
+  "name": "Museum BI AI Guide",
+  "short_name": "Museum BI",
+  "description": "AI Guide Museum Bank Indonesia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F172A",
+  "theme_color": "#0F172A",
+  "icons": [
+    {
+      "src": "/icon app.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
