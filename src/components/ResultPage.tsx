@@ -9,6 +9,8 @@ import {
     ScanSearch,
     Lightbulb,
     MapPin,
+    Volume2,
+    Square,
 } from "lucide-react";
 
 import { museumData } from "@/data/museumData";
@@ -62,6 +64,9 @@ export default function ResultPage() {
 
     const [loading, setLoading] =
         useState(true);
+
+    const [isSpeaking, setIsSpeaking] =
+        useState(false);
 
     useEffect(() => {
 
@@ -159,7 +164,7 @@ export default function ResultPage() {
 
         }
 
-        }, []);
+    }, []);
 
     if (loading) {
 
@@ -192,6 +197,135 @@ export default function ResultPage() {
         );
 
     }
+
+    const speakDescription = () => {
+
+        if (!data?.description) return;
+
+        window.speechSynthesis.cancel();
+
+        let textToRead = "";
+
+        textToRead +=
+            `Koleksi ${data.title}. `;
+
+        textToRead +=
+            data.description + ". ";
+
+        if (data.timeline) {
+
+            textToRead +=
+                "Informasi mengenai koleksi ini. ";
+
+            data.timeline.forEach(
+                (item: any) => {
+
+                    if (item.year) {
+                        textToRead += `${item.year}. `;
+                    }
+
+                    if (item.title) {
+                        textToRead += `${item.title}. `;
+                    }
+
+                    if (item.description) {
+                        textToRead += `${item.description}. `;
+                    }
+
+                }
+            );
+
+        }
+
+        if (data.facts) {
+
+            textToRead +=
+                "Fakta menarik. ";
+
+            if (
+                Array.isArray(data.facts)
+            ) {
+
+                data.facts.forEach(
+                    (fact: string) => {
+
+                        textToRead +=
+                            `${fact}. `;
+                    }
+                );
+
+            } else {
+
+                textToRead +=
+                    `${data.facts}. `;
+            }
+
+        }
+
+        if (data.trivia) {
+
+            textToRead +=
+                "Tahukah kamu. ";
+
+            textToRead +=
+                `${data.trivia}. `;
+        }
+
+        if (data.location) {
+
+            textToRead +=
+                `Lokasi koleksi berada di ${data.location}. `;
+
+            if (data.locationDesc) {
+                textToRead += `${data.locationDesc}. `;
+            }
+        }
+
+        const voices =
+            window.speechSynthesis.getVoices();
+
+        const indoVoice =
+            voices.find(
+                voice =>
+                    voice.lang === "id-ID"
+            );
+
+        const speech =
+            new SpeechSynthesisUtterance(
+                textToRead
+            );
+
+        speech.lang = "id-ID";
+
+        if (indoVoice) {
+            speech.voice = indoVoice;
+        }
+
+        speech.rate = 1;
+
+        speech.pitch = 1;
+
+        speech.onstart = () => {
+            setIsSpeaking(true);
+        };
+
+        speech.onend = () => {
+            setIsSpeaking(false);
+        };
+
+        window.speechSynthesis.speak(
+            speech
+        );
+
+    };
+
+    const stopSpeech = () => {
+
+        window.speechSynthesis.cancel();
+
+        setIsSpeaking(false);
+
+    };
 
     return (
         <main className="min-h-screen bg-[#0F172A] flex justify-center">
@@ -323,6 +457,117 @@ export default function ResultPage() {
                 )}
 
                 {/* DESCRIPTION */}
+                <div className="mt-3">
+
+                    {!isSpeaking ? (
+
+                        <button
+                            onClick={speakDescription}
+                            className="
+                    w-full
+                    bg-gradient-to-r
+                    from-[#0F172A]
+                    to-[#1E293B]
+                    border border-[#C5A876]
+                    rounded-[24px]
+                    p-4
+                    shadow-lg
+                    transition-all
+                    hover:scale-[1.01]
+                    "
+                        >
+
+                            <div className="flex items-center gap-3">
+
+                                <div
+                                    className="
+                    w-12 h-12
+                    rounded-full
+                    bg-[#C5A876]/20
+                    flex items-center
+                    justify-center
+                    "
+                                >
+                                    <Volume2 size={22} color="#C5A876" />
+                                </div>
+
+                                <div className="text-left">
+
+                                    <p className="text-white font-semibold">
+                                        Audio Guide
+                                    </p>
+
+                                    <p className="text-white/80 text-sm">
+                                        Dengarkan informasi koleksi
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </button>
+
+                    ) : (
+
+                        <button
+                            onClick={stopSpeech}
+                            className="
+                    w-full
+                    bg-gradient-to-r
+                    from-[#5A1E1E]
+                    to-[#7A2E2E]
+                    rounded-[24px]
+                    p-4
+                    shadow-lg
+                    transition-all
+                    hover:scale-[1.01]
+                    "
+                        >
+
+                            <div className="flex items-center gap-3">
+
+                                <div
+                                    className="
+                    w-12 h-12
+                    rounded-full
+                    bg-white/20
+                    flex items-center
+                    justify-center
+                    "
+                                >
+                                    <Square size={20} color="#F8F6F4" />
+                                </div>
+
+                                <div className="text-left">
+
+                                    <p
+                                        className="text-white font-semibold text-[15px]"
+                                        style={{
+                                            fontFamily: "Poppins"
+                                        }}
+                                    >
+                                        Hentikan Audio Guide
+                                    </p>
+
+                                    <p
+                                        className="text-[#E9E1D4] text-[12px]"
+                                        style={{
+                                            fontFamily: "Poppins"
+                                        }}
+                                    >
+                                        Audio sedang diputar
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </button>
+
+                    )}
+
+                </div>
+
                 <div className="bg-[#F8F6F4] rounded-[25px] p-4 mt-3 border border-[#D6C4A7] shadow-md">
 
                     <h2
@@ -557,7 +802,7 @@ export default function ResultPage() {
                     </p>
 
                 </div>
-                
+
 
                 {/* BOTTOM NAVBAR */}
                 <BottomNavbar />
