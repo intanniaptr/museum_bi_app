@@ -25,7 +25,7 @@ export default async function CategoryPage({
             {/* BACK */}
             <div className="flex items-center gap-3">
 
-                <Link href="/">
+                <Link href="/home">
                     <ArrowLeft
                         className="w-7 h-7 text-[#0F172A]"
                     />

@@ -18,6 +18,10 @@ import BottomNavbar from "@/components/BottomNavbar";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+const API_URL =
+    process.env.NEXT_PUBLIC_API_URL ||
+    "http://127.0.0.1:8000";
+
 /* ==================================================
    TYPES
 ================================================== */
@@ -70,99 +74,58 @@ export default function ResultPage() {
 
     useEffect(() => {
 
-        const predictedClass =
-            sessionStorage.getItem(
-                "predictedClass"
-            );
+        const loadData = async () => {
 
-        const confidenceValue =
-            sessionStorage.getItem(
-                "confidence"
-            );
-
-        if (
-            predictedClass &&
-            confidenceValue &&
-            museumData[
-            predictedClass as keyof typeof museumData
-            ]
-        ) {
-
-            const museumItem =
-                museumData[
-                predictedClass as keyof typeof museumData
-                ];
-
-            const oldHistory =
-                JSON.parse(
-                    localStorage.getItem(
-                        "scanHistory"
-                    ) || "[]"
+            const predictedClass =
+                sessionStorage.getItem(
+                    "predictedClass"
                 );
 
-            const latestItem =
-                oldHistory[0];
-
-            if (
-                latestItem?.title !== museumItem.title
-            ) {
-
-                const newHistory = [
-                    {
-                        title: museumItem.title,
-                        category:
-                            "Koleksi Museum",
-                        image: museumItem.image,
-                        confidence:
-                            confidenceValue,
-                    },
-                    ...oldHistory,
-                ].slice(0, 2);
-
-                localStorage.setItem(
-                    "scanHistory",
-                    JSON.stringify(
-                        newHistory
-                    )
+            const confidenceValue =
+                sessionStorage.getItem(
+                    "confidence"
                 );
-
-            }
-            console.log(
-                "PREDICTED CLASS:",
-                predictedClass
-            );
-
-            console.log(
-                "AVAILABLE KEYS:",
-                Object.keys(museumData)
-            );
 
             if (
                 predictedClass &&
-                museumData[
-                predictedClass as keyof typeof museumData
-                ]
+                confidenceValue
             ) {
 
-                setData(
-                    museumData[
-                    predictedClass as keyof typeof museumData
-                    ]
-                );
+                try {
+
+                    const response =
+                        await fetch(
+                            `${API_URL}/collections/${predictedClass}`
+                        );
+
+                    const museumItem =
+                        await response.json();
+
+                    setData(museumItem);
+                    setConfidence(confidenceValue);
+
+                } catch (error) {
+
+                    console.error(error);
+
+                } finally {
+
+                    setLoading(false);
+
+                }
 
             }
 
-            if (confidenceValue) {
+        };
 
-                setConfidence(
-                    confidenceValue
-                );
+        loadData();
 
-            }
+        // STOP AUDIO SAAT KELUAR HALAMAN
+        return () => {
 
-            setLoading(false);
+            window.speechSynthesis.cancel();
 
-        }
+        };
 
     }, []);
 

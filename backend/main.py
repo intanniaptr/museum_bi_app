@@ -1,6 +1,8 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 
+from supabase_client import supabase
+
 from tensorflow.keras.models import load_model
 from tensorflow.keras.applications.mobilenet_v3 import preprocess_input
 
@@ -80,6 +82,37 @@ def root():
 @app.get("/test-model")
 def test_model():
     return {"status": "loaded"}
+
+# ==================================================
+# COLLECTIONS ENDPOINT
+# ==================================================
+
+@app.get("/collections")
+def get_collections():
+
+    response = (
+        supabase
+        .table("collections")
+        .select("*")
+        .execute()
+    )
+
+    return response.data
+
+
+@app.get("/collections/{slug}")
+def get_collection(slug: str):
+
+    response = (
+        supabase
+        .table("collections")
+        .select("*")
+        .eq("slug", slug)
+        .single()
+        .execute()
+    )
+
+    return response.data
 
 # ==================================================
 # PREDICTION ENDPOINT
