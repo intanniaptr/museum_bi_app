@@ -241,9 +241,10 @@ export default function HomePage() {
                 alt="Museum BI"
                 className="
                     ml-2
-                    translate-y-10
-                    w-[140px]
+                    w-[120px]
+                    sm:w-[140px]
                     flex-shrink-0
+                    self-end
                   "
               />
 

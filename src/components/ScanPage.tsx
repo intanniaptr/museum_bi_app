@@ -110,7 +110,7 @@ export default function ScanPage() {
                 result.confidence.toString()
             );
 
-            if (result.class === "unknown") {
+            if (result.confidence < 70) {
 
                 sessionStorage.setItem(
                     "unknownObject",
@@ -252,7 +252,7 @@ export default function ScanPage() {
                         result.confidence.toString()
                     );
 
-                    if (result.class === "unknown") {
+                    if (result.confidence < 70) {
 
                         sessionStorage.setItem(
                             "unknownObject",

@@ -97,7 +97,27 @@ def get_collections():
         .execute()
     )
 
-    return response.data
+    items = response.data
+
+    for item in items:
+
+        item["englishTitle"] = item.get(
+            "english_title"
+        )
+
+        item["headerColor"] = item.get(
+            "header_color"
+        )
+
+        item["locationDesc"] = item.get(
+            "location_desc"
+        )
+
+        item["sectionTitle"] = item.get(
+            "section_title"
+        )
+
+    return items
 
 
 @app.get("/collections/{slug}")
@@ -112,7 +132,27 @@ def get_collection(slug: str):
         .execute()
     )
 
-    return response.data
+    item = response.data
+
+    if item:
+
+        item["englishTitle"] = item.get(
+            "english_title"
+        )
+
+        item["headerColor"] = item.get(
+            "header_color"
+        )
+
+        item["locationDesc"] = item.get(
+            "location_desc"
+        )
+
+        item["sectionTitle"] = item.get(
+            "section_title"
+        )
+
+    return item
 
 # ==================================================
 # PREDICTION ENDPOINT
@@ -167,9 +207,16 @@ async def predict(file: UploadFile = File(...)):
     ]
 
     # ==========================================
+    # DEBUG CONFIDENCE
+    # ==========================================
+    print(
+        f"Predicted: {model_class} | Confidence: {confidence:.2f}%"
+    )
+
+    # ==========================================
     # UNKNOWN OBJECT THRESHOLD
     # ==========================================
-    if confidence < 80:
+    if confidence < 60:
 
         return {
             "class": "unknown",
@@ -189,5 +236,3 @@ async def predict(file: UploadFile = File(...)):
             2
         )
     }
-    
-    
