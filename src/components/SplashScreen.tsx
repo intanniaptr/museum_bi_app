@@ -1,27 +1,18 @@
 "use client";
 
-/* ==================================================
-   IMPORTS
-================================================== */
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-/* ==================================================
-   SPLASH SCREEN
-================================================== */
 export default function SplashScreen() {
 
-  /* ==========================================
-      HOOKS
-  ========================================== */
   const router = useRouter();
 
   const [fadeOut, setFadeOut] =
     useState(false);
 
   /* ==========================================
-      SPLASH TIMER
-  ========================================== */
+     SPLASH TIMER
+ ========================================== */
   useEffect(() => {
 
     const fadeTimer =
@@ -29,22 +20,20 @@ export default function SplashScreen() {
 
         setFadeOut(true);
 
-      }, 1800);
+      }, 2500);
 
     const redirectTimer =
       setTimeout(() => {
 
         router.replace("/home");
 
-      }, 4000);
+      }, 3200);
 
     return () => {
 
       clearTimeout(fadeTimer);
 
-      clearTimeout(
-        redirectTimer
-      );
+      clearTimeout(redirectTimer);
 
     };
 
@@ -54,17 +43,16 @@ export default function SplashScreen() {
 
     <main
       className={`
-        h-screen
-        bg-[#0F172A]
-        overflow-hidden
-        transition-opacity
-        duration-700
-        ${
-          fadeOut
-            ? "opacity-0"
-            : "opacity-100"
+    h-screen
+    bg-[#0F172A]
+    overflow-hidden
+    transition-opacity
+    duration-700
+    ${fadeOut
+          ? "opacity-0"
+          : "opacity-100"
         }
-      `}
+  `}
     >
 
       {/* ==========================================
@@ -90,18 +78,35 @@ export default function SplashScreen() {
             flex
             flex-col
             items-center
-            pt-12
+            pt-20
           "
         >
 
           {/* ==========================================
               LOGO
           ========================================== */}
-          <img
-            src="/Logo.png"
-            alt="Museum BI Logo"
-            className="w-[80px] mb-5"
-          />
+          <div
+            className="
+              mt-5
+              mb-3
+              flex
+              h-[140px]
+              w-[140px]
+              items-center
+              justify-center
+              rounded-full
+              bg-[#F1E7D3]
+              shadow-xl
+            "
+          >
+
+            <img
+              src="/Logo_21.png"
+              alt="BIstory Logo"
+              className="w-[95px] object-contain"
+            />
+
+          </div>
 
           {/* ==========================================
               TITLE
@@ -110,34 +115,24 @@ export default function SplashScreen() {
 
             <h1
               className="
-                text-[#AE8642]
-                text-[40px]
-                leading-none
-                mt-5
-              "
+                  text-[52px]
+                  tracking-wide
+                  leading-none
+                  mt-5
+                  bg-gradient-to-r
+                  from-[#E3C27A]
+                  via-[#C89B4A]
+                  to-[#8B682C]
+                  bg-clip-text
+                  text-transparent
+                "
               style={{
                 fontFamily:
                   "Playfair Display"
               }}
             >
-              MUSEUM BI
+              BIstory
             </h1>
-
-            <h2
-              className="
-                text-[#DADADA]
-                text-[40px]
-                leading-none
-                mt-1
-                mb-5
-              "
-              style={{
-                fontFamily:
-                  "Playfair Display"
-              }}
-            >
-              AI GUIDE
-            </h2>
 
           </div>
 
@@ -146,43 +141,69 @@ export default function SplashScreen() {
           ========================================== */}
           <div
             className="
-              text-[#DADADA]
-              text-center
-              mt-5
-              text-white
-            "
-            style={{
-              fontFamily:
-                "Poppins"
-            }}
+    text-center
+    mt-5
+  "
           >
 
-            <p className="text-[14px] font-medium">
-              Jelajahi Sejarah Keuangan
+            {/* GARIS */}
+            <div className="flex items-center justify-center gap-3 mb-4">
+
+              <div className="w-20 h-[1px] bg-[#C89B4A]" />
+
+              <div className="w-2 h-2 rounded-full bg-[#C89B4A]" />
+
+              <div className="w-20 h-[1px] bg-[#C89B4A]" />
+
+            </div>
+
+            {/* TAGLINE */}
+            <p
+              className="
+      text-[15px]
+      text-[#E5E7EB]
+      font-medium
+      leading-[26px]
+    "
+              style={{
+                fontFamily: "Poppins"
+              }}
+            >
+              Discover the Story Behind
             </p>
 
-            <p className="text-[14px] font-medium mt-1">
-              Indonesia Dengan AI
+            <p
+              className="
+      text-[15px]
+      text-[#E5E7EB]
+      font-medium
+      mb-20
+      leading-[26px]
+    "
+              style={{
+                fontFamily: "Poppins"
+              }}
+            >
+              Every Museum Collection
             </p>
 
           </div>
-
-        </div>
-
-        {/* ==========================================
+          {/* ==========================================
             BUILDING IMAGE
         ========================================== */}
-        <div className="w-full mt-auto">
+          <div className="w-full mt-auto">
 
-          <img
-            src="/museum_bi.png"
-            alt="Museum BI"
-            className="
+            <img
+              src="/museum_bi.png"
+              alt="Museum BI"
+              className="
               w-full
               h-auto
               object-contain
             "
-          />
+            />
+
+          </div>
 
         </div>
 
@@ -191,4 +212,5 @@ export default function SplashScreen() {
     </main>
 
   );
+
 }

@@ -4,6 +4,8 @@
 ================================================== */
 import {
     Images,
+    Lightbulb,
+    CheckCircle2
 } from "lucide-react";
 
 import {
@@ -333,8 +335,8 @@ export default function ScanPage() {
 
         startCamera();
         {/* ==========================================
-    PAGE CONTAINER
-========================================== */}
+            PAGE CONTAINER
+        ========================================== */}
         return () => {
 
             streamRef.current
@@ -348,13 +350,13 @@ export default function ScanPage() {
 
     }, []);
     {/* ==========================================
-    MOBILE CONTAINER
-========================================== */}
+        MOBILE CONTAINER
+        ========================================== */}
     return (
 
         <main className="min-h-screen bg-[#0F172A] flex justify-center">
 
-            <div className="w-full max-w-[430px] min-h-screen px-5 pt-4 pb-28">
+            <div className="w-full max-w-[430px] min-h-screen px-5 pt-4 pb-20">
 
                 <div className="h-2" />
 
@@ -364,7 +366,7 @@ export default function ScanPage() {
                         className="text-white text-[16px] font-semibold"
                         style={{
                             fontFamily:
-                                "Playfair Display"
+                                "Poppins"
                         }}
                     >
                         Scan Objek
@@ -372,7 +374,7 @@ export default function ScanPage() {
 
                 </div>
 
-                <div className="relative mt-20 mx-auto w-[80%] overflow-hidden rounded-[40px]">
+                <div className="relative mt-15 mx-auto w-[80%] overflow-hidden rounded-[40px]">
 
                     <video
                         ref={videoRef}
@@ -431,6 +433,110 @@ export default function ScanPage() {
 
                 </div>
 
+                {/* ==========================================
+                    TIPS SCAN
+                    ========================================== */}
+                <section
+                    className="
+    relative
+    mt-6
+    overflow-hidden
+    rounded-[30px]
+    border
+    border-[#D9B26A]
+    bg-[#FBF5ED]
+    px-5
+    py-5
+  "
+                >
+
+                    {/* WATERMARK */}
+                    <Lightbulb
+                        size={120}
+                        className="
+      absolute
+      right-[-10px]
+      top-1/2
+      -translate-y-1/2
+      text-[#D9B26A]
+      opacity-10
+    "
+                    />
+
+                    {/* HEADER */}
+                    <div className="flex items-center gap-3">
+
+                        <Lightbulb
+                            size={22}
+                            color="#AE8642"
+                        />
+
+                        <h3
+                            className="text-[#0F172A] text-[22px]"
+                            style={{ fontFamily: "Playfair Display" }}
+                        >
+                            Tips Scan
+                        </h3>
+
+                        <div className="flex-1 h-[1px] bg-[#D9B26A]" />
+
+                    </div>
+
+                    {/* CONTENT */}
+                    <div className="mt-3 space-y-2">
+
+                        <div className="flex items-start gap-3">
+
+                            <CheckCircle2
+                                size={18}
+                                color="#AE8642"
+                            />
+
+                            <p
+                                className="text-[14px] text-[#333]"
+                                style={{ fontFamily: "Poppins" }}
+                            >
+                                Pastikan objek terlihat jelas dan tidak buram.
+                            </p>
+
+                        </div>
+
+                        <div className="flex items-start gap-3">
+
+                            <CheckCircle2
+                                size={18}
+                                color="#AE8642"
+                            />
+
+                            <p
+                                className="text-[14px] text-[#333]"
+                                style={{ fontFamily: "Poppins" }}
+                            >
+                                Gunakan pencahayaan yang cukup.
+                            </p>
+
+                        </div>
+
+                        <div className="flex items-start gap-3">
+
+                            <CheckCircle2
+                                size={18}
+                                color="#AE8642"
+                            />
+
+                            <p
+                                className="text-[14px] text-[#333]"
+                                style={{ fontFamily: "Poppins" }}
+                            >
+                                Fokuskan kamera pada satu objek.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
                 <input
                     ref={fileInputRef}
                     type="file"
@@ -439,8 +545,8 @@ export default function ScanPage() {
                     onChange={handleImageSelect}
                 />
                 {/* ==========================================
-    BOTTOM NAVBAR
-========================================== */}
+                    BOTTOM NAVBAR
+                    ========================================== */}
                 <BottomNavbar />
 
             </div>

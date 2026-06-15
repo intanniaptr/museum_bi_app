@@ -117,7 +117,6 @@ export default function HomePage() {
           </div>
 
         </div>
-
         {/* ==========================================
             SCAN CARD
         ========================================== */}
@@ -179,11 +178,83 @@ export default function HomePage() {
           />
 
         </div>
+        {/* ==========================================
+            GUIDE CARD
+            ========================================== */}
+        <Link href="/guide">
 
+          <div
+            className="
+      mt-2
+      rounded-[24px]
+      border
+      border-[#D9B26A]
+      bg-[#F9F5EE]
+      px-3
+    "
+          >
+
+            <div className="flex items-center">
+
+              {/* LEFT */}
+              <div className="flex-1">
+
+                <h2
+                  className="text-[18px] text-[#2B1E12] leading-tight"
+                  style={{ fontFamily: "Playfair Display" }}
+                >
+                  ✨ Kenali Fitur BIstory
+                </h2>
+
+                <p
+                  className="mt-3 text-[14px] leading-[24px] text-[#333]"
+                  style={{ fontFamily: "Poppins" }}
+                >
+                  Pelajari cara menggunakan fitur aplikasi untuk mengenali koleksi museum.
+                </p>
+
+                <div
+                  className="
+    mt-4
+    inline-block
+    rounded-full
+    bg-gradient-to-br
+    from-[#C89B4A]
+    to-[#8B682C]
+    px-6
+    py-3
+    text-[14px]
+    text-white
+    shadow-xl
+  "
+                  style={{ fontFamily: "Poppins" }}
+                >
+                  Pelajari Fitur
+                </div>
+
+              </div>
+
+              {/* RIGHT IMAGE */}
+              <img
+                src="/museum-guide.png"
+                alt="Museum BI"
+                className="
+                    ml-2
+                    translate-y-10
+                    w-[140px]
+                    flex-shrink-0
+                  "
+              />
+
+            </div>
+
+          </div>
+
+        </Link>
         {/* ==========================================
             CATEGORY SECTION
         ========================================== */}
-        <div className="mt-3">
+        <div className="mt-3" >
 
           <h2
             className="mb-3 text-[20px] text-[#1A1A1A]"
@@ -191,49 +262,48 @@ export default function HomePage() {
           >
             Kategori Koleksi
           </h2>
+        </div>
 
-          {/* ==========================================
+        {/* ==========================================
               CATEGORY GRID
           ========================================== */}
-          <div className="grid grid-cols-5 gap-2">
+        <div className="grid grid-cols-5 gap-2">
 
-            {categoryData.map((item) => (
+          {categoryData.map((item) => (
 
-              <Link
-                key={item.slug}
-                href={`/kategori/${item.slug}`}
-                className="flex flex-col items-center"
+            <Link
+              key={item.slug}
+              href={`/kategori/${item.slug}`}
+              className="flex flex-col items-center"
+            >
+
+              <div className="flex h-[60px] w-[60px] items-center justify-center rounded-[10px] bg-gradient-to-br from-[#C89B4A] to-[#8B682C] shadow-md">
+
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-[42px] w-[42px] object-contain"
+                />
+
+              </div>
+
+              <p
+                className="mt-2 text-center text-[11px] text-[#1A1A1A]"
+                style={{ fontFamily: "Poppins" }}
               >
+                {item.title}
+              </p>
 
-                <div className="flex h-[60px] w-[60px] items-center justify-center rounded-[10px] bg-gradient-to-br from-[#C89B4A] to-[#8B682C] shadow-md">
+            </Link>
 
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="h-[42px] w-[42px] object-contain"
-                  />
-
-                </div>
-
-                <p
-                  className="mt-2 text-center text-[11px] text-[#1A1A1A]"
-                  style={{ fontFamily: "Poppins" }}
-                >
-                  {item.title}
-                </p>
-
-              </Link>
-
-            ))}
-
-          </div>
+          ))}
 
         </div>
 
         {/* ==========================================
             SCAN HISTORY
         ========================================== */}
-        <div className="mt-3">
+        < div className="mt-3" >
 
           <div className="mb-3 flex items-center justify-between">
 
@@ -249,13 +319,14 @@ export default function HomePage() {
           {/* ==========================================
               HISTORY CONTENT
           ========================================== */}
-          {historyData.length > 0 ? (
+          {
+            historyData.length > 0 ? (
 
-            historyData.map((item, index) => (
+              historyData.map((item, index) => (
 
-              <div
-                key={index}
-                className="
+                <div
+                  key={index}
+                  className="
                   mb-2
                   flex
                   items-center
@@ -266,70 +337,72 @@ export default function HomePage() {
                   bg-white
                   p-3
                 "
-              >
+                >
 
-                {/* ==========================================
+                  {/* ==========================================
                     HISTORY IMAGE
                 ========================================== */}
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-[70px] rounded-[10px] object-contain"
-                />
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-[70px] rounded-[10px] object-contain"
+                  />
 
-                {/* ==========================================
+                  {/* ==========================================
                     HISTORY INFORMATION
                 ========================================== */}
-                <div>
+                  <div>
 
-                  <h3
-                    className="mb-2 text-[16px] text-[#0F172A]"
-                    style={{ fontFamily: "Poppins" }}
-                  >
-                    {item.title}
-                  </h3>
+                    <h3
+                      className="mb-2 text-[16px] text-[#0F172A]"
+                      style={{ fontFamily: "Poppins" }}
+                    >
+                      {item.title}
+                    </h3>
 
-                  <p
-                    className="mb-1 text-[12px] text-[#1A1A1A]"
-                    style={{ fontFamily: "Poppins" }}
-                  >
-                    {item.category}
-                  </p>
+                    <p
+                      className="mb-1 text-[12px] text-[#1A1A1A]"
+                      style={{ fontFamily: "Poppins" }}
+                    >
+                      {item.category}
+                    </p>
 
-                  <p
-                    className="text-[10px] text-[#4E7B3C]"
-                    style={{ fontFamily: "Poppins" }}
-                  >
-                    {item.confidence}% Tingkat Keyakinan
-                  </p>
+                    <p
+                      className="text-[10px] text-[#4E7B3C]"
+                      style={{ fontFamily: "Poppins" }}
+                    >
+                      {item.confidence}% Tingkat Keyakinan
+                    </p>
+
+                  </div>
 
                 </div>
 
+              ))
+
+            ) : (
+
+              <div className="rounded-[20px] border border-[#DADADA] bg-white p-4 text-center">
+
+                <p
+                  className="text-[12px] text-[#666]"
+                  style={{ fontFamily: "Poppins" }}
+                >
+                  Belum ada riwayat scan
+                </p>
+
               </div>
 
-            ))
+            )
+          }
 
-          ) : (
 
-            <div className="rounded-[20px] border border-[#DADADA] bg-white p-4 text-center">
-
-              <p
-                className="text-[12px] text-[#666]"
-                style={{ fontFamily: "Poppins" }}
-              >
-                Belum ada riwayat scan
-              </p>
-
-            </div>
-
-          )}
-
-        </div>
-
-        {/* ==========================================
+          {/* ==========================================
             BOTTOM NAVBAR
         ========================================== */}
-        <BottomNavbar />
+          <BottomNavbar />
+
+        </div>
 
       </div>
 
