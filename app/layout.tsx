@@ -33,8 +33,8 @@ const poppins = Poppins({
    METADATA
 ================================================== */
 export const metadata: Metadata = {
-  title: "Museum BI AI Guide",
-  description: "AI Guide Museum Bank Indonesia",
+  title: "BIstory",
+  description: "Discover the Collections",
 
   manifest: "/manifest.json",
 

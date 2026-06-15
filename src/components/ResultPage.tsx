@@ -104,6 +104,27 @@ export default function ResultPage() {
                     setData(museumItem);
                     setConfidence(confidenceValue);
 
+                    /* ==========================================
+                       SAVE SCAN HISTORY
+                    ========================================== */
+                    const history =
+                        JSON.parse(
+                            localStorage.getItem("scanHistory") || "[]"
+                        );
+
+                    history.unshift({
+                        title: museumItem.title,
+                        category:
+                            museumItem.subtitle || "Koleksi Museum",
+                        image: museumItem.image,
+                        confidence: confidenceValue,
+                    });
+
+                    localStorage.setItem(
+                        "scanHistory",
+                        JSON.stringify(history.slice(0, 5))
+                    );
+
                 } catch (error) {
 
                     console.error(error);
@@ -129,17 +150,7 @@ export default function ResultPage() {
 
     }, []);
 
-    if (loading) {
-
-        return (
-            <main className="min-h-screen bg-[#0F172A] flex items-center justify-center">
-                <p className="text-white">
-                    Memuat hasil...
-                </p>
-            </main>
-        );
-
-    }
+    if (loading) return null;
 
     if (!data) {
 

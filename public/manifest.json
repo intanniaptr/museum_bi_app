@@ -1,7 +1,7 @@
 {
-  "name": "Museum BI AI Guide",
-  "short_name": "Museum BI",
-  "description": "AI Guide Museum Bank Indonesia",
+  "name": "BIstory",
+  "short_name": "BIstory",
+  "description": "Discover the Story Behind Every Museum Collection",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0F172A",
