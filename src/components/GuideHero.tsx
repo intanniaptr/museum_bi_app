@@ -80,9 +80,9 @@ export default function GuideHero() {
                         className="text-[25px] leading-tight"
                         style={{ fontFamily: "Playfair Display" }}
                     >
-                        Fitur Web
+                        Fitur Aplikasi
                         <br />
-                        Museum BI
+                        BIstory
                     </h1>
 
                     <p
@@ -145,7 +145,7 @@ export default function GuideHero() {
                             className="text-[13px] leading-[24px] text-[#555]"
                             style={{ fontFamily: "Poppins" }}
                         >
-                            Museum BI AI merupakan aplikasi klasifikasi koleksi
+                            BIstory merupakan aplikasi klasifikasi koleksi
                             Museum Bank Indonesia berbasis Convolutional Neural
                             Network (CNN) yang dikembangkan untuk membantu
                             pengunjung mengenali objek museum secara interaktif.
