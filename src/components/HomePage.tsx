@@ -10,6 +10,7 @@ import BottomNavbar from "@/components/BottomNavbar";
    TYPES
 ================================================== */
 type ScanHistory = {
+  id: string;
   title: string;
   category: string;
   image: string;
@@ -326,17 +327,33 @@ export default function HomePage() {
 
                 <div
                   key={index}
+                  onClick={() => {
+
+                    sessionStorage.setItem(
+                      "predictedClass",
+                      item.id
+                    );
+
+                    sessionStorage.setItem(
+                      "confidence",
+                      item.confidence
+                    );
+
+                    window.location.href = "/result";
+
+                  }}
                   className="
-                  mb-2
-                  flex
-                  items-center
-                  gap-4
-                  rounded-[20px]
-                  border
-                  border-[#DADADA]
-                  bg-white
-                  p-3
-                "
+                      cursor-pointer
+                      mb-2
+                      flex
+                      items-center
+                      gap-4
+                      rounded-[20px]
+                      border
+                      border-[#DADADA]
+                      bg-white
+                      p-3
+                    "
                 >
 
                   {/* ==========================================

@@ -113,6 +113,7 @@ export default function ResultPage() {
                         );
 
                     history.unshift({
+                        id: predictedClass,
                         title: museumItem.title,
                         category:
                             museumItem.subtitle || "Koleksi Museum",
