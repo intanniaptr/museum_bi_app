@@ -150,7 +150,17 @@ export default function ResultPage() {
 
     }, []);
 
-    if (loading) return null;
+    if (loading) {
+
+        return (
+            <main className="min-h-screen bg-[#0F172A] flex items-center justify-center">
+                <p className="text-white">
+                    Memuat hasil...
+                </p>
+            </main>
+        );
+
+    }
 
     if (!data) {
 

@@ -472,7 +472,7 @@ export default function ScanPage() {
                         />
 
                         <h3
-                            className="text-[#0F172A] text-[22px]"
+                            className="text-[#0F172A] text-[20px]"
                             style={{ fontFamily: "Playfair Display" }}
                         >
                             Tips Scan
@@ -483,7 +483,7 @@ export default function ScanPage() {
                     </div>
 
                     {/* CONTENT */}
-                    <div className="mt-3 space-y-2">
+                    <div className="mt-2 space-y-1">
 
                         <div className="flex items-start gap-3">
 
@@ -493,7 +493,7 @@ export default function ScanPage() {
                             />
 
                             <p
-                                className="text-[14px] text-[#333]"
+                                className="text-[12px] text-[#333]"
                                 style={{ fontFamily: "Poppins" }}
                             >
                                 Pastikan objek terlihat jelas dan tidak buram.
@@ -509,7 +509,7 @@ export default function ScanPage() {
                             />
 
                             <p
-                                className="text-[14px] text-[#333]"
+                                className="text-[12px] text-[#333]"
                                 style={{ fontFamily: "Poppins" }}
                             >
                                 Gunakan pencahayaan yang cukup.
@@ -525,7 +525,7 @@ export default function ScanPage() {
                             />
 
                             <p
-                                className="text-[14px] text-[#333]"
+                                className="text-[12px] text-[#333]"
                                 style={{ fontFamily: "Poppins" }}
                             >
                                 Fokuskan kamera pada satu objek.

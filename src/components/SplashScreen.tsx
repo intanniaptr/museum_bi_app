@@ -177,7 +177,7 @@ export default function SplashScreen() {
       text-[15px]
       text-[#E5E7EB]
       font-medium
-      mb-20
+      mb-18
       leading-[26px]
     "
               style={{
