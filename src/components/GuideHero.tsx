@@ -80,7 +80,7 @@ export default function GuideHero() {
                         className="text-[25px] leading-tight"
                         style={{ fontFamily: "Playfair Display" }}
                     >
-                        Fitur Aplikasi
+                        Fitur Website
                         <br />
                         BIstory
                     </h1>
@@ -134,7 +134,7 @@ export default function GuideHero() {
                             className="text-[#0F172A] text-[22px]"
                             style={{ fontFamily: "Playfair Display" }}
                         >
-                            Tentang Aplikasi
+                            Tentang Website
                         </h2>
 
                     </div>
@@ -145,7 +145,7 @@ export default function GuideHero() {
                             className="text-[13px] leading-[24px] text-[#555]"
                             style={{ fontFamily: "Poppins" }}
                         >
-                            BIstory merupakan aplikasi klasifikasi koleksi
+                            BIstory merupakan website klasifikasi koleksi
                             Museum Bank Indonesia berbasis Convolutional Neural
                             Network (CNN) yang dikembangkan untuk membantu
                             pengunjung mengenali objek museum secara interaktif.

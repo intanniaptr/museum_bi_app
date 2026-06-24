@@ -125,6 +125,18 @@ export default function ScanPage() {
 
             }
 
+            console.log(
+                "UNKNOWN:",
+                sessionStorage.getItem(
+                    "unknownObject"
+                )
+            );
+
+            console.log(
+    "CONFIDENCE:",
+    result.confidence
+);
+
             sessionStorage.setItem(
                 "predictionReady",
                 "true"

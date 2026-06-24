@@ -211,7 +211,7 @@ export default function HomePage() {
                   className="mt-3 text-[14px] leading-[24px] text-[#333]"
                   style={{ fontFamily: "Poppins" }}
                 >
-                  Pelajari cara menggunakan fitur aplikasi untuk mengenali koleksi museum.
+                  Pelajari cara menggunakan fitur website untuk mengenali koleksi museum.
                 </p>
 
                 <div
