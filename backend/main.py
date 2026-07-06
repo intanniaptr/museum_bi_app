@@ -31,7 +31,7 @@ app.add_middleware(
 # LOAD MODEL
 # ==================================================
 
-model = load_model("model/model_exp3.keras")
+model = load_model("model/museum_bi_model.keras")
 
 # ==================================================
 # CLASS LABELS
